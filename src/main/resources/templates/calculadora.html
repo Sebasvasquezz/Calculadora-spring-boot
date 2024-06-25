@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculadora Web MVC</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+    <h1>Calculadora Web MVC</h1>
+    <h2>Resultado: <span th:text="${resultado}">0.0</span></h2>
+
+    <form th:action="@{/calcular}" method="post">
+        <input type="number" name="numero1" placeholder="Número 1" required/>
+        <select name="operacion">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="AC">AC</option>
+        </select>
+        <button type="submit">Calcular</button>
+    </form>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red;"></p>
+    </div>
+</body>
+</html>
