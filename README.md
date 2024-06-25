@@ -25,7 +25,7 @@ This repository contains a Spring Boot application that implements a simple web-
 * **styles.css:** CSS file for styling the calculator UI.
 
 ## Architectural Design
-![Architectural Design](image-1.png)
+![Architectural Design](src\main\resources\static\image-1.png)
 * The user accesses the application through the public URL of the EC2 instance.
 * The request arrives at Spring's DispatcherServlet.
 * The DispatcherServlet routes the request to the CalculatorController.
@@ -65,7 +65,7 @@ Download the project from
     ```
 
 * And the execution in AWS:
- ![Execution in AWS](image.png)
+ ![Execution in AWS](src\main\resources\static\image.png)
 
 ## Built With
 
