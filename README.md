@@ -1,18 +1,44 @@
-# EchoServer Concurrent
+# Spring Boot Calculator Application
 
-This repository contains a concurrent echo server implemented in Java, designed to handle multiple client connections simultaneously using a fixed thread pool. The server listens on a specified port and responds to HTTP GET requests by serving static files from a predefined web root directory. The server utilizes Java's networking APIs and concurrent programming features to efficiently manage client connections. It includes error handling for client requests and supports basic HTTP response codes such as 200 (OK) and 404 (Not Found). This project is suitable for learning about concurrent server programming and basic web server functionality in Java.
+This repository contains a Spring Boot application that implements a simple web-based calculator. The application provides basic arithmetic operations such as addition, subtraction, multiplication, division, and reset (All Clear). It follows the Model-View-Controller (MVC) architecture pattern to separate the application's logic, user interface, and user input handling.
 
+### Features
+* **Addition:** Add numbers.
+* **Subtraction:** Subtract numbers.
+* **Multiplication:** Multiply numbers.
+* **Division:** Divide numbers (with validation to prevent division by zero).
+* **All Clear:** Reset the calculator to its initial state.
 
+### Technologies Used
+* **Java:** Programming language.
+* **Spring Boot:** Framework for building the application.
+* **Thymeleaf:** Template engine for rendering the HTML views.
+* **CSS:** Styling the application.
+
+## Proyect Structure
+
+* **CalculadoraApplication.java:** The main class that bootstraps the Spring Boot application.
+* **CalculadoraController.java:** The controller class that handles web requests and performs arithmetic operations.
+
+* **calculadora.html:** Thymeleaf template for the calculator UI.
+
+* **styles.css:** CSS file for styling the calculator UI.
+
+## Architectural Design
+![Architectural Design](image-1.png)
+* The user accesses the application through the public URL of the EC2 instance.
+* The request arrives at Spring's DispatcherServlet.
+* The DispatcherServlet routes the request to the CalculatorController.
+* The CalculatorController processes the request and uses the CalculatorService to perform the math operation.
+* The result is sent to the view and displayed to the user.
 
 ## Getting Started
 Download the project from 
-[the repository.](https://github.com/Sebasvasquezz/Task1-LOC-Counting)
+[the repository.](https://github.com/Sebasvasquezz/Calculadora-spring-boot)
 
 ### Prerequisites
 
 * [Maven](https://maven.apache.org/): Automate and standardize the life flow of software construction
-
-* [Git](https://www.git-scm.com/): Decentralized Configuration Manager
 
 ### Installing
 1. Maven
@@ -20,95 +46,27 @@ Download the project from
     * You need to have Java installed (7 or 8)
     * Follow the instructions in http://maven.apache.org/download.html#Installation
 
-2. Git
-    * Download git in https://git-scm.com/download/win
-    * Follow the instructions in https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-
-## Running the tests
-
-This test suite verifies the functionality and concurrency of an Echo Server implemented in Java using JUnit and Java's HttpClient. The server, EchoServerConcurrent, is tested for its ability to handle multiple concurrent HTTP GET requests correctly.
-
-Once the repository is downloaded, open a command prompt and run the following command to run the unit tests:
-
-```
-mvn test
-```
-The execution:
-
-![Execution of unit tests](images/image-1.png)
-
-## Design
-
-### Class Diagram
-The class diagram was made by using Astah. To go deeper into it, check out the Concurrent-Server.asta file.
-![Class Diagram](images/image.png)
-* **EchoServerConcurrent:**
-
-    * **Attributes:**
-
-        * **PORT:** Constant defining the port on which the server listens.
-        * **THREAD_POOL_SIZE:** Constant defining the size of the thread pool.
-
-    * **Methods:**
-
-        * **main(String[] args):** Main method that starts the server, creates an ExecutorService with a thread pool, and accepts client connections in an infinite loop.
-
-* **ClientHandler:**
-
-    * **Attributes:**
-
-        * **serverSocket:** A ServerSocket used by the client handler to accept connections.
-    * **Methods:**
-
-        * **ClientHandler(ServerSocket):** Constructor that initializes the handler with the ServerSocket.
-
-
-        * **run():** Overridden method from Runnable that accepts client connections and handles them.
-
-        * **handleClient(Socket):** Method that handles client requests.
-
-        * **serveFile(OutputStream, PrintWriter, String):** Method that serves the file requested by the client.
-
-        * **send404(PrintWriter):** Method that sends a 404 Not Found response to the client.
-
-
 ## Build the project
 * Run the comand:
     ```
-    mvn package
+    mvn clean install
     ```
 * Run the application:
     ```
-    mvn exec:java
+    mvn spring-boot:run
     ```
     or 
     ```
-    & 'C:\Program Files\Java\jdk-21\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'E:\ARSW\6. Tarea4\Concurrent-Server\target\classes' 'edu.escuelaing.arsw.ASE.app.EchoServerConcurrent'
+    java -jar "archivo.jar"
     ```
-* And the execution:
-    * Terminal:
-
-        ![Terminal](images/image-3.png)
-    * Browser:
-
-        ![Browser](images/image-4.png)
-
-    
-### Phase architecture
-* To allow running the main application directly from the command line using Maven (mvn exec:java):
+* Javadoc:
     ```
-    <build>
-    <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-              <mainClass>edu.escuelaing.arsw.ASE.app.EchoServerConcurrent</mainClass>
-          </configuration> 
-    </plugins>
-  </build>
+    mvn javadoc:javadoc
     ```
+
+* And the execution in AWS:
+ ![Execution in AWS](image.png)
+
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
@@ -119,7 +77,7 @@ The class diagram was made by using Astah. To go deeper into it, check out the C
 
 ## Date
 
-June 12, 2024
+June 25, 2024
 
 ## License
 
